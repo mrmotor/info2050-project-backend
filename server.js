@@ -1,15 +1,16 @@
-require('dotenv').config();
-const app = require('./src/app');
-const connectDB = require('./src/infrastructure/db');
-const seedDatabase = require('./src/infrastructure/seed');
+require("dotenv").config();
+const app = require("./src/app");
+const connectDB = require("./src/infrastructure/db");
+const seedDatabase = require("./src/infrastructure/seed");
 
 const start = async () => {
-    await connectDB();
+  //   console.log(process.env.MONGO_URI);
+  await connectDB(process.env.MONGO_URI);
 
-    // Seed only if needed
-    await seedDatabase();
+  // Seed only if needed
+  await seedDatabase();
 
-    app.listen(5000, () => console.log('Server running on port 5000'));
+  app.listen(5000, () => console.log("Server running on port 5000"));
 };
 
 start();
