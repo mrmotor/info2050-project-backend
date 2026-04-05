@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken');
 
 // This verification function might be worse/outdated
 // Consider deleting later
-function verifyToken(req, res, next) {
+const verifyToken = (req, res, next) => {
     const token = req.headers['authorization'];
     if (!token) return res.status(401).json({ error: 'No token' });
     try {
@@ -14,7 +14,7 @@ function verifyToken(req, res, next) {
     }
 }
 
-function authenticate (req, res, next) {
+const authenticate = (req, res, next) => {
     const authHeader = req.headers['authorization'];
     if (!authHeader) return res.status(401).json({ error: 'No token' });
     const [ scheme, token ] = authHeader.split(' ');
